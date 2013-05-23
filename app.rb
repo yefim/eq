@@ -1,5 +1,5 @@
 require "sinatra"
 
 get "/" do
-  "better eq"
+  erb :index
 end
