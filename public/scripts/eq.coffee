@@ -1,3 +1,3 @@
-require [], ->
+require ['models/question'], (Question) ->
   Backbone.history.start(pushState: true)
-  console.log "loaded"
+  console.log Question
