@@ -10,10 +10,12 @@ configure do
 end
 
 get "/" do
+  @eq = false
   erb :index
 end
 
-get "/questions/:page" do |page|
-  content_type :json
-  settings.collection.find(page: page).to_a.to_json
+get "/:page" do |page|
+  @eq = true
+  @questions = settings.collection.find().to_a
+  erb :eq
 end
