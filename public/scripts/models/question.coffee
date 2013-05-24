@@ -7,7 +7,7 @@ define [], ->
         selected: null
       }
 
-  class Questions
+  class Questions extends Backbone.Collection
     model: Question
     url: '/questions'
 

@@ -1,0 +1,7 @@
+<p>
+  <%= text %>
+</p>
+<% _.each(options, function(option, index) { %>
+  <input type='radio' name='selected' value='<%= option %>'> <%= option %><br/>
+<% }) %>
+<a class='prev' href='#'>previous</a> <a class='next' href='#'>next</a>
