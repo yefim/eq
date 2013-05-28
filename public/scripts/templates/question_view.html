@@ -1,7 +1,14 @@
-<p>
+<h5>
+  Question <%= id %> of <%= max %>
+</h5>
+<p class='question-text'>
   <%= text %>
 </p>
+<div class='options'>
 <% _.each(options, function(option, index) { %>
-  <input <% if (option === selected) { %>checked<% } %> type='radio' name='selected' value='<%= option %>'> <%= option %><br/>
+  <p><input id='radio-<%= index %>' <% if (option === selected) { %>checked<% } %> type='radio' name='selected' value='<%= option %>'><label for='radio-<%= index %>'><%= option %></label></p>
 <% }) %>
-<a class='prev button' href='#'>Previous</a> <a class='next button <% if (!selected) { %>disabled<% } %>' href='#'>Next</a>
+</div>
+<div class='controls'>
+  <a class='small prev button <% if (id === min) { %>disabled<% } %>' href='#'>Previous</a> <% if (id === max) { %><a class='small success button'>Finish</a><% } else { %><a class='small next button <% if (!selected) { %>disabled<% } %>' href='#'>Next</a><% } %>
+</div>
