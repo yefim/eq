@@ -1,5 +1,6 @@
 define ['text!templates/question_view.html'], (template) ->
   class QuestionView extends Backbone.View
+    className: 'large-6 large-centered columns'
     events:
       'click a.prev'            : 'prev_question'
       'click a.next'            : 'next_question'
