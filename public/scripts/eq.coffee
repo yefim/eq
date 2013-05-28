@@ -10,7 +10,9 @@ require ['models/question', 'views/question_view'], (Question, QuestionView) ->
     show_question: (number) ->
       number = parseInt(number, 10)
       q = @questions.at(number)
-      @question_view = new QuestionView.view(model: q, number: number)
+      @question_view = new QuestionView.view(model: q)
+      @question_view.on 'change_q', (val) =>
+        @navigate (number + val) + "", {trigger: true}
       $('#questions').html @question_view.render().el
 
   window.router = new Router()

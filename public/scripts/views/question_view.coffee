@@ -5,20 +5,21 @@ define ['text!templates/question_view.html'], (template) ->
       'click a.next'            : 'next_question'
       'click input[type=radio]' : 'select_answer'
 
-    initialize: (options) ->
-      @number = options.number
-
     select_answer: (e) ->
       selected = $(e.currentTarget).val()
       @model.set(selected: selected)
+      @render()
+
+    change_question: (e, val) =>
+      e.preventDefault()
+      return if $(e.currentTarget).hasClass('disabled')
+      @trigger 'change_q', val
 
     next_question: (e) ->
-      e.preventDefault()
-      window.router.navigate (@number + 1) + "", {trigger: true}
+      @change_question e, 1
 
     prev_question: (e) ->
-      e.preventDefault()
-      window.router.navigate (@number - 1) + "", {trigger: true}
+      @change_question e, -1
 
     render: ->
       @$el.html _.template(template, @model.toJSON())

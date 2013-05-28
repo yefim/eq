@@ -4,7 +4,7 @@ define [], ->
       return {
         text: ''
         options: []
-        selected: null
+        selected: ''
       }
 
   class Questions extends Backbone.Collection
