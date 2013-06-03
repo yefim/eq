@@ -14,6 +14,17 @@ get "/" do
   erb :index
 end
 
+post "/results" do
+  a = params["answers"]
+  questions = settings.collection.find().to_a
+
+  # score
+
+  p a
+  content_type :json
+  params
+end
+
 get "/:page" do |page|
   @eq = true
   @questions = settings.collection.find().to_a
