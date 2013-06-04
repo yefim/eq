@@ -10,5 +10,7 @@
 <% }) %>
 </div>
 <div class='controls'>
-  <a class='small prev button <% if (id === min) { %>disabled<% } %>' href='#'>Previous</a> <% if (id === max) { %><a class='small success button'>Finish</a><% } else { %><a class='small next button <% if (!selected) { %>disabled<% } %>' href='#'>Next</a><% } %>
+  <a class='small prev button <% if (id === min) { %>disabled<% } %>' href='#'>Previous</a>
+  <% if (id === max) { %> <a class='small success button <% if (!selected) { %>disabled<% } %>'>Finish</a>
+  <% } else { %> <a class='small next button <% if (!selected) { %>disabled<% } %>' href='#'>Next</a><% } %>
 </div>

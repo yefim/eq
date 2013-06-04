@@ -9,6 +9,6 @@ define [], ->
 
   class Questions extends Backbone.Collection
     model: Question
-    url: '/questions'
+    url: '/results'
 
   return {model: Question, collection: Questions}

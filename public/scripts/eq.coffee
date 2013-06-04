@@ -9,7 +9,12 @@ require ['models/question', 'views/question_view'], (Question, QuestionView) ->
       ':number' : 'show_question'
 
     show_results: ->
-      console.log "results are shown"
+      $.ajax(
+        type: 'POST'
+        url: @questions.url
+        data: {answers: @questions.pluck('selected')}
+      ).done (results) =>
+        console.log results
 
     show_question: (number) ->
       number = parseInt(number, 10)
