@@ -9,8 +9,15 @@ configure do
   set :collection, conn['db']['eq']
 end
 
+post "/" do
+  @eq = false
+  headers['X-Frame-Options'] = 'GOFORIT'
+  erb :index
+end
+
 get "/" do
   @eq = false
+  headers['X-Frame-Options'] = 'GOFORIT'
   erb :index
 end
 
