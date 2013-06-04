@@ -32,3 +32,4 @@ require ['models/question', 'views/question_view'], (Question, QuestionView) ->
 
   window.router = new Router()
   Backbone.history.start(pushState: true)
+ `Chegg.init({appName: "eq", version: "1", redirect: "http://localhost:4567"});`
