@@ -4,20 +4,23 @@ require "json/ext"
 
 include Mongo
 
+# http://stackoverflow.com/questions/8414395/verb-agnostic-matching-in-sinatra
+def self.get_or_post(url,&block)
+  get(url,&block)
+  post(url,&block)
+end
+
 configure do
   conn = MongoClient.new('localhost', 27017)
   set :collection, conn['db']['eq']
 end
 
-post "/" do
-  @eq = false
+before do
   headers['X-Frame-Options'] = 'GOFORIT'
-  erb :index
 end
 
-get "/" do
+get_or_post "/" do
   @eq = false
-  headers['X-Frame-Options'] = 'GOFORIT'
   erb :index
 end
 
