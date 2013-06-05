@@ -1,6 +1,9 @@
 require "sinatra"
 require "mongo"
 require "json/ext"
+require "base64"
+require "openssl"
+require_relative 'environment.rb'
 
 include Mongo
 
@@ -43,9 +46,19 @@ end
 
 private
 
+# returns nil if signature could not be verified -Max
 def decrypt_key(signed_request)
   parts = signed_request.split('.', 2)
   signature = parts[0]
   payload = parts[1]
-  JSON.parse(Base64::decode64(payload))
+  if validate_signature(signature, payload)
+    JSON.parse(Base64::decode64(payload))
+  else
+    nil
+  end
+end
+
+def validate_signature(signature, payload)
+  expected_signature = OpenSSL::HMAC.digest('sha256', [SECRET_KEY].pack('H*'), payload)
+  Base64::encode64(signature).eql?(Base64::encode64(expected_signature))
 end
