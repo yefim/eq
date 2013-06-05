@@ -8,8 +8,9 @@
     <link rel='stylesheet' href='stylesheets/style.css'>
   </head>
   <body>
-    <script src="https://d2dswzpx2y1fhq.cloudfront.net/_sdk/chegg.js"></script>
     <%= yield %>
+    <script src="https://d2dswzpx2y1fhq.cloudfront.net/_sdk/chegg.js"></script>
+    <script src="scripts/chegg.js"></script>
     <% if @eq %>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
