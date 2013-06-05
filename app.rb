@@ -21,7 +21,7 @@ end
 
 get_or_post "/" do
   @eq = false
-  decrypt_key(params[:signed_request])
+  @user = decrypt_key(params[:signed_request])
   erb :index
 end
 
@@ -47,5 +47,5 @@ def decrypt_key(signed_request)
   parts = signed_request.split('.', 2)
   signature = parts[0]
   payload = parts[1]
-  @user = JSON.parse(Base64::decode64(payload))
+  JSON.parse(Base64::decode64(payload))
 end
