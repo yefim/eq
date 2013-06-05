@@ -21,6 +21,7 @@ end
 
 get_or_post "/" do
   @eq = false
+  decrypt_key(params[:signed_request])
   erb :index
 end
 
@@ -38,4 +39,13 @@ get "/:page" do |page|
   @eq = true
   @questions = settings.collection.find().to_a
   erb :eq
+end
+
+private
+
+def decrypt_key(signed_request)
+  parts = signed_request.split('.', 2)
+  signature = parts[0]
+  payload = parts[1]
+  @user = JSON.parse(Base64::decode64(payload))
 end
